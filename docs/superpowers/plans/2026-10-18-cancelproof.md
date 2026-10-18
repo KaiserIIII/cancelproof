@@ -1,0 +1,12 @@
+# CancelProof engineering plan
+
+Execute autonomously using subagent-driven-development for independent evidence/interface tasks and requesting-code-review before freeze. User explicitly declines intermediate approval/questions; skill review gates become file-based checkpoints, never hidden waiver of validation.
+
+- [ ] Task1 evidence: pinned actual source/docs/license inspection of eight requested ecosystems, fair executable baselines, four fixed-version issue reproductions where feasible. Two independent agents write separate external directories, no project mutation.
+- [ ] Task2 engine: root writes literal observable tests first (cancel actual Task.cancelling, lock/counter/commit/propagation, missing hit, task bounds, TaskGroup). Implement strict model/Probe/async engine and bounded child runner per spec. Preserve RED/GREEN output. Integrate primitive resource checks without private asyncio internals.
+- [ ] Task3 interfaces: independent agent owns reports.py, cli.py, pytest_plugin.py and interface tests only. PythonAPI is root-owned. Tests first against exact report/CLI/fixture behavior; no need build a browser app.
+- [ ] Task4 scenarios/integration: root owns examples.py, ASGI demo and scenario tests. Actual broken/fixed cases, legitimate background control, soft/hard deadlines and process cleanup. Actual HTTPX transport not fake reports. Validate replay/selection limits and deterministic reached-plan description without promising scheduler determinism.
+- [ ] Task5 acceptance: install fixed audited dependencies into new venv; test Windows3.13 and available isolated Linux3.12/3.13. Clean checkout install+CLI+plugin+examples/report exports. Save actual logs, environment, source hashes, commands/exit and NOT_RUN distinctions. No other project modifications.
+- [ ] Task6 independent review/delivery: independent safety/correctness reviewer, actual counterexamples, narrow RED/GREEN fixes only. Fair value/limits decision, README/Chinese/API/architecture/security/thirdparty/provenance, reports, final audit/public manifest, local commits, verified ZIP/bundle/restore and RESUME. No remote publication or research claims.
+
+Recovery: raw E:/final/cancelproof-evidence-20261018. Source spec is authoritative and reviewed for conflicts before implementation. Fixture targets execute trusted local code in child processes, not a malicious sandbox. Prior projects stay frozen. Engine process guard permits all soft-deadline/cleanup observations but reaps an unresponsive child; no PASS before process exit.
