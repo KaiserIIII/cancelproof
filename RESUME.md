@@ -1,5 +1,7 @@
 # CancelProof checkpoint
 
+Publication checkpoint: user subsequently authorized KaiserIIII/cancelproof. Original candidate4302407071f74d48161f6b5c1fbea0a7cdf164d2 passed all four hosted OS/Python jobs (run39103724090). Publication working copy is separate from the preserved original frozen directory. Only installation/publication documentation and the same62-path manifest are updated; implementation remains byte-identical. Final SHA/tree/CI/path verification and recovery steps are saved outside source in E:/final/cancelproof-publication-20261018/PUBLICATION.json. No package/Release/service/upstream changes authorized. Do not resume feature development.
+
 Active task: CancelProof full local engineering delivery. Independent source E:/final/cancelproof-20261018; full external evidence E:/final/cancelproof-evidence-20261018. Autonomous local commits/offline artifacts authorized; GitHub publication, push, Release and upstream PR forbidden. Other projects untouched. Feature development is frozen.
 
 Design and plan are in docs/superpowers. Core uses standard asyncio named checkpoints+actual Task.cancel in fresh subprocesses with parent deadline, public APIs only. Root owns Probe/engine/runner/models/examples/ASGI; interface agent owns CLI/reports/pytest integration after brief; research agents own only separate evidence folders. Preserve all failed attempts and unknown results. Final conclusion may be NO-GO/READY_WITH_LIMITATIONS; no novelty or exhaustive schedule claim.

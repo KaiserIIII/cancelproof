@@ -6,15 +6,18 @@ CancelProof calls real `asyncio.Task.cancel()` at checkpoints you name, observes
 
 **Source experimental edition.** It controls named checkpoints, not arbitrary awaits or bytecode. It does not prove race freedom, infer business correctness, or sandbox malicious Python code. Imports and scenarios execute with your permissions. Run only trusted local targets. Reports can contain values you explicitly share.
 
+Source repository: [KaiserIIII/cancelproof](https://github.com/KaiserIIII/cancelproof). Hosted Windows/Linux × Python 3.12/3.13 checks execute the full suite and the constructed acceptance cases; see [Actions](https://github.com/KaiserIIII/cancelproof/actions/workflows/checks.yml). These bounded tests do not replace broad workload or historical-version validation.
+
 ## Install
 
-From this source directory, create a virtual environment and use its Python:
+Download or clone this repository, open its source directory, then create a virtual environment and use its Python:
 
 ```powershell
 py -3.13 -m venv .venv
 .venv\Scripts\python -m pip install --require-hashes -r requirements-dev.lock
 .venv\Scripts\python -m pip install --no-build-isolation --no-deps .
 .venv\Scripts\python -m pytest -q
+.venv\Scripts\Activate.ps1
 ```
 
 ```sh
@@ -22,9 +25,12 @@ python3.12 -m venv .venv
 .venv/bin/python -m pip install --require-hashes -r requirements-dev.lock
 .venv/bin/python -m pip install --no-build-isolation --no-deps .
 .venv/bin/python -m pytest -q
+. .venv/bin/activate
 ```
 
 The engine has no runtime third-party dependencies. The pinned development environment includes pytest, the build backend, and HTTPX for the ASGI example. No hosted API, cloud service, telemetry, database, or network listener is required.
+
+The remaining examples use the activated environment's `python`. If PowerShell execution policy prevents activation, use `.venv\Scripts\python` instead of `python` in each example; on Linux use `.venv/bin/python`. No system policy change is necessary.
 
 ## Run a real cancellation
 
@@ -84,4 +90,4 @@ python -m cancelproof run cancelproof.examples:asgi_fixed --plan examples/plans/
 
 This executes HTTPX `ASGITransport` against the included request handler, sends a real in-process HTTP test request, cancels the request task and checks request resources, background tasks and absence of a cancelled commit. It is not a production server/socket/load test, and HTTPX ASGITransport does not drive ASGI lifespan.
 
-MIT license. No public repository, package upload, or release is created by this local delivery.
+MIT license. Only the experimental source is published; no PyPI package, formal Release, or public service is provided.

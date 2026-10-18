@@ -1,5 +1,7 @@
 # Acceptance record
 
+Publication update: the original candidate also passed hosted [run39103724090](https://github.com/KaiserIIII/cancelproof/actions/runs/39103724090), all four Windows/Linux × Python3.12/3.13 jobs, including39 tests+4 subtests and13 constructed cases per job. The table below remains the original **local** acceptance record; its NOT RUN entries describe that earlier stage. The Actions workflow verifies the final publication commit again after documentation-only corrections.
+
 Tested implementation commit: `f8fd438ed0c6b1aaf68b2c5d6ca450be7578c725`. Final documentation/evidence packaging commits preserve these implementation files. See the final external delivery manifest for the final commit and ZIP/bundle/wheel hashes.
 
 | Actual environment | Installation / pip check | Full pytest | Constructed CLI/API/report cases |

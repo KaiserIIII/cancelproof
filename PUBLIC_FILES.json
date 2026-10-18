@@ -20,8 +20,8 @@
     },
     {
       "path": "ACCEPTANCE.md",
-      "bytes": 3994,
-      "sha256": "4766d0f0ca9f859304aea413d6778658cea346d7b1dec57bf8d120dc277713fe"
+      "bytes": 4471,
+      "sha256": "87304b439f5a3166183ae4494014c54957e2664cf0aaee63e3840c175d794aeb"
     },
     {
       "path": "CHANGELOG.md",
@@ -35,8 +35,8 @@
     },
     {
       "path": "FINAL_REPORT.md",
-      "bytes": 6512,
-      "sha256": "8e81d8dd89d2301c1dea45fd7a02016026194fa611e6fdf0e61749c05c6a19af"
+      "bytes": 6785,
+      "sha256": "92eabf840ec8db78bb3c5bc9eedb92eebb591da083ae25fe6ac8962735d62df4"
     },
     {
       "path": "LICENSE",
@@ -45,18 +45,18 @@
     },
     {
       "path": "PUBLICATION_READINESS.md",
-      "bytes": 2067,
-      "sha256": "346a6e098cdf0d0743a2186c6771ada73f7bcfd9e8e53c1a8bfb5ec851bde277"
+      "bytes": 2283,
+      "sha256": "24f32e48a0615280c84aa13f9862b67e6b5e0187b77fce8bcc1d6d95d19f9bf3"
     },
     {
       "path": "README.md",
-      "bytes": 5653,
-      "sha256": "47f16aac1c6798f6f258f7a92122055787c68a46aa11ea885619b0970fee34c3"
+      "bytes": 6385,
+      "sha256": "6dd4bc76070e91e7fbf74da058d8d49be41decfa3db7879eb60d56a0e34bbf52"
     },
     {
       "path": "RESUME.md",
-      "bytes": 3548,
-      "sha256": "ea1e3262ca082ea7cf1b018b42c3e3f64a76799fb569ef3a50e72b906b052082"
+      "bytes": 4183,
+      "sha256": "992a1c354eeb76b6fc6f7330c49b87c1040ddca75ed35b15e7a531594698fb40"
     },
     {
       "path": "SECURITY.md",

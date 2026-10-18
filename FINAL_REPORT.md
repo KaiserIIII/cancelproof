@@ -42,4 +42,4 @@ Source: `E:/final/cancelproof-20261018`. Full raw local evidence: `E:/final/canc
 
 Final source ZIP, installable wheel, verified Git Bundle and SHA256/SHA/restore manifest are in external `delivery/`. Source ZIP contains only the Git-tracked public list; runtime, caches, research archives and original raw logs are excluded. Bundle contains this new project's local source history only. [Readiness decision](PUBLICATION_READINESS.md), [resume checkpoint](RESUME.md).
 
-No remote repository/push/Release/PyPI/public service/upstream PR was created. No other project was modified. Development stops at this delivered candidate.
+The original local delivery created no remote repository. Under later explicit user authorization, the experimental source was published at https://github.com/KaiserIIII/cancelproof; hosted Windows/Linux × Python3.12/3.13 checks passed for the original candidate and verify the final documentation update. No Release/PyPI/public service/upstream PR was created. No other project was modified. Feature development remains frozen.
