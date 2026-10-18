@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cancelproof"
+version = "0.1.0"
+description = "Bounded cancellation fault injection and explicit invariants for trusted asyncio scenarios"
+requires-python = ">=3.12"
+license = "MIT"
+readme = "README.md"
+authors = [{name="KaiserIIII"}]
+dependencies = []
+
+[project.scripts]
+cancelproof = "cancelproof.cli:main"
+
+[project.entry-points.pytest11]
+cancelproof = "cancelproof.pytest_plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
