@@ -73,6 +73,7 @@ See [API and input contract](docs/API.md), [architecture](docs/ARCHITECTURE.md),
 - Plans, source digest and checkpoint sequence support controlled replay. A seed changes selected checkpoint order, not the OS or stock event-loop scheduler. Repeated runs can differ.
 - Source digest covers the scenario module, not imported dependencies. A mismatch prevents the target callable from running; importing its trusted module still occurs.
 - Hard timeouts are INCONCLUSIVE: no reliable final state is invented. Processes are reaped, but descendants, native resources and memory are not sandboxed.
+- Task creation accounting covers Probe/loop-factory paths. Direct `asyncio.Task(...)` construction or replacing the factory bypasses accounting and completed-task retention; these target behaviors are unsupported.
 - LoomCheck already offers checkpoint schedules, replay and shrinking; pyleak already diagnoses pending tasks; direct `Task.cancel()` plus assertions can express these tests. Our increment is a cancellation-oriented request/report contract with separate-process deadline handling, not a new scheduler or scientific innovation.
 
 ## Local ASGI integration

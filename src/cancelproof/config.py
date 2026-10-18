@@ -10,6 +10,7 @@ LIMITATIONS = [
     "A bounded passing run does not prove race freedom or real-world false-positive rates.",
     "Source digest covers the scenario module only, not transitive dependencies or environment.",
     "No hard memory quota or descendant-process isolation; user-shared events may contain sensitive data.",
+    "Task creation bounds/retention cover probe and event-loop task-factory paths; direct asyncio.Task constructors bypass them and are unsupported.",
 ]
 DEFAULTS = dict(timeout=1.0, grace=.15, wall_timeout=5.0, max_tasks=32, max_events=2000)
 

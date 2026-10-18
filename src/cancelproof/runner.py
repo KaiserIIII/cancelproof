@@ -11,7 +11,7 @@ import tempfile
 import time
 import warnings
 
-from .config import validate, integer
+from .config import validate, integer, VERSION
 from .engine import skeleton
 
 MAX_FILE = 2 * 1024 * 1024
@@ -120,7 +120,7 @@ def run_scenario(scenario, plan=None, limits=None, *, expected_source_sha256=Non
 def aggregate(scenario, runs, selection=None):
     verdicts = [r["verdict"] for r in runs]
     verdict = "FAIL" if "FAIL" in verdicts else "INCONCLUSIVE" if any(v != "PASS" for v in verdicts) else "PASS"
-    return dict(schema_version=1, scenario=scenario, verdict=verdict if runs else "NOT_RUN", runs=runs,
+    return dict(schema_version=1, version=VERSION, scenario=scenario, verdict=verdict if runs else "NOT_RUN", runs=runs,
                 selection=selection or {}, summary={v: verdicts.count(v) for v in ("PASS", "FAIL", "INCONCLUSIVE", "NOT_RUN")},
                 limitations=["Checkpoint selection is bounded coverage, not exhaustive scheduling."])
 

@@ -75,6 +75,8 @@ def main(argv=None):
         if getattr(args,'output',None):write_reports(result,args.output)
         # ASCII escaping works with legacy Windows redirected stdout without losing Unicode data.
         print(json.dumps(result,ensure_ascii=True,allow_nan=False))
+        if 'verdict' in result:
+            print('CancelProof: '+result['verdict'],file=sys.stderr)
         if result.get('input_error') or any(r.get('input_error') for r in result.get('runs',[])):return 1
         return {'PASS':0,'FAIL':2,'INCONCLUSIVE':3,'NOT_RUN':3}.get(result.get('verdict'),0)
     except (ValueError,TypeError,OSError,KeyError) as exc:

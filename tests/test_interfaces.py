@@ -48,6 +48,8 @@ class InterfaceTests(unittest.TestCase):
         r=self.cli('explore','cancelproof.examples:lock_fixed','--max-runs','2')
         self.assertEqual(r.returncode,0,r.stderr)
         self.assertEqual(len(json.loads(r.stdout)['runs']),2)
+        self.assertEqual(json.loads(r.stdout)['version'],'0.1.0')
+        self.assertIn('CancelProof: PASS',r.stderr)
 
     def test_replay_validates_entire_batch_before_execution(self):
         from cancelproof.cli import main
