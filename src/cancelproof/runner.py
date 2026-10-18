@@ -4,15 +4,40 @@ import json
 import os
 from pathlib import Path
 import random
+import shutil
 import subprocess
 import sys
 import tempfile
 import time
+import warnings
 
 from .config import validate, integer
 from .engine import skeleton
 
 MAX_FILE = 2 * 1024 * 1024
+
+
+class _Workspace:
+    """Windows can briefly retain a dead process's file handles. Never mask cancellation."""
+    def __enter__(self):
+        self.name = tempfile.mkdtemp(prefix="cancelproof-")
+        self.cleaned = False
+        return self.name
+
+    def __exit__(self, exc_type, exc, tb):
+        for attempt in range(20):
+            try:
+                shutil.rmtree(self.name)
+                self.cleaned = True
+                break
+            except FileNotFoundError:
+                self.cleaned = True
+                break
+            except OSError:
+                time.sleep(.05)
+        if not self.cleaned:
+            warnings.warn("CancelProof private temporary directory cleanup incomplete", ResourceWarning)
+        return False
 
 
 def _stop(process):
@@ -32,7 +57,8 @@ async def arun_scenario(scenario, plan=None, limits=None, *, expected_source_sha
         raise ValueError("expected digest must be lowercase SHA256")
     request = dict(scenario=scenario, plan=plan, limits=limits, expected_source_sha256=expected_source_sha256)
     result = skeleton(scenario, plan, limits)
-    with tempfile.TemporaryDirectory(prefix="cancelproof-") as name:
+    workspace = _Workspace()
+    with workspace as name:
         folder = Path(name)
         (folder / "request.json").write_text(json.dumps(request), encoding="utf-8")
         env = os.environ.copy()
@@ -75,7 +101,12 @@ async def arun_scenario(scenario, plan=None, limits=None, *, expected_source_sha
                                  elapsed_seconds=round(time.monotonic() - started, 4),
                                  stdout_bytes=(folder / "stdout.log").stat().st_size,
                                  stderr_bytes=(folder / "stderr.log").stat().st_size)
-        return result
+    result["process"]["workspace_removed"] = workspace.cleaned
+    if not workspace.cleaned:
+        result["diagnostics"].append({"code": "WORKSPACE_CLEANUP_INCOMPLETE"})
+        if result["verdict"] == "PASS":
+            result["verdict"] = "INCONCLUSIVE"
+    return result
 
 
 def run_scenario(scenario, plan=None, limits=None, *, expected_source_sha256=None):
@@ -110,7 +141,7 @@ def campaign(scenario, max_runs=12, seed=0, repeats=1, limits=None):
         for _ in range(repeats):
             plans.append({"actions": [{k: point[k] for k in ("checkpoint", "task", "occurrence")}]})
     for plan in plans[:max_runs - 1]:
-        if time.monotonic() - started + (limits or {}).get("wall_timeout", 5) > 120:
+        if time.monotonic() - started + (limits or {}).get("wall_timeout", 5) + 2.6 > 120:
             break
         runs.append(run_scenario(scenario, plan, limits))
     return aggregate(scenario, runs, dict(mode="baseline_then_checkpoint_cancellation", seed=seed, repeats=repeats,

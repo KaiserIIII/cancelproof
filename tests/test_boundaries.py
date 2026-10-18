@@ -51,6 +51,7 @@ class BoundaryTests(unittest.IsolatedAsyncioTestCase):
             t=p.create_task(asyncio.sleep(10),'worker')
             with self.assertRaises(ValueError):p.create_task(asyncio.sleep(0),'worker')
             with self.assertRaises(ValueError):p.create_task(asyncio.sleep(0),'overflow')
+            with self.assertRaises(ValueError):p.create_task(asyncio.sleep(0),'invalid',must_finish='yes')
             t.cancel();await asyncio.gather(t,return_exceptions=True)
         self.assertEqual((await self.execute(target,limits={'max_tasks':2}))['verdict'],'PASS')
 
@@ -90,3 +91,31 @@ class BoundaryTests(unittest.IsolatedAsyncioTestCase):
                 await p.checkpoint('commit')
             finally:f.close()
         self.assertEqual((await self.execute(target,{'actions':[{'checkpoint':'commit'}]}))['verdict'],'PASS')
+
+    async def test_finished_unregistered_error_is_observed(self):
+        async def bad():raise RuntimeError('private error')
+        async def target(p):
+            asyncio.create_task(bad())
+            await asyncio.sleep(.02)
+        r=await self.execute(target)
+        self.assertEqual(r['verdict'],'INCONCLUSIVE')
+        self.assertIn('CHILD_EXCEPTION_UNCLASSIFIED',[d['code'] for d in r['diagnostics']])
+
+    async def test_handled_child_exception_is_not_definite_bug(self):
+        async def bad():raise ValueError('expected business error')
+        async def target(p):
+            try:
+                async with asyncio.TaskGroup() as group:p.track(group.create_task(bad()),'child')
+            except* ValueError:pass
+        r=await self.execute(target)
+        self.assertEqual(r['verdict'],'INCONCLUSIVE')
+
+    async def test_explicit_handled_child_exception(self):
+        async def bad():raise ValueError('expected business error')
+        async def target(p):
+            try:
+                async with asyncio.TaskGroup() as group:
+                    task=p.track(group.create_task(bad()),'child')
+                    p.allow_exception(task,'expected and recovered business error')
+            except* ValueError:pass
+        self.assertEqual((await self.execute(target))['verdict'],'PASS')

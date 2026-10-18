@@ -15,6 +15,7 @@ class Probe:
         self.tasks = {}
         self.controllers = set()
         self.exempt = {}
+        self.allowed_exceptions = {}
         self.predicates = []
         self.events, self.checkpoints = [], []
         self.counts = Counter()
@@ -54,6 +55,8 @@ class Probe:
     def create_task(self, coro, name, must_finish=True):
         try:
             label(name)
+            if type(must_finish) is not bool:
+                raise ValueError("must_finish must be bool")
             if name in self.tasks or len(self.tasks) >= self.limits["max_tasks"]:
                 raise ValueError("duplicate label or max_tasks exceeded")
             task = asyncio.create_task(coro, name=name)
@@ -68,6 +71,12 @@ class Probe:
         if not isinstance(task, asyncio.Task) or task.get_loop() is not asyncio.get_running_loop():
             raise ValueError("background exclusion requires local Task")
         self.exempt[task] = reason
+
+    def allow_exception(self, task, reason):
+        label(reason)
+        if not any(t is task for t, _ in self.tasks.values()) or task is self.tasks["scenario"][0]:
+            raise ValueError("only a registered child exception may be explicitly acknowledged")
+        self.allowed_exceptions[task] = reason
 
     def invariant(self, name, predicate, *, category="business", actual=None, expected=True):
         label(name)

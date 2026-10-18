@@ -4,6 +4,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from cancelproof.reports import write_reports
 
@@ -47,3 +48,16 @@ class InterfaceTests(unittest.TestCase):
         r=self.cli('explore','cancelproof.examples:lock_fixed','--max-runs','2')
         self.assertEqual(r.returncode,0,r.stderr)
         self.assertEqual(len(json.loads(r.stdout)['runs']),2)
+
+    def test_replay_validates_entire_batch_before_execution(self):
+        from cancelproof.cli import main
+        with tempfile.TemporaryDirectory() as td:
+            file=Path(td)/'replay.json'
+            for limits in (None,{'wall_timeout':-1000}):
+                data={'schema_version':1,'scenario':'cancelproof.examples:lock_fixed','runs':[
+                    {'plan':{},'limits':{'wall_timeout':60},'source_sha256':'a'*64}]*3+
+                    [{'plan':{},'limits':limits,'source_sha256':'a'*64}]}
+                file.write_text(json.dumps(data),encoding='utf-8')
+                with patch('cancelproof.cli.run_scenario') as run:
+                    self.assertEqual(main(['replay',str(file)]),1)
+                    run.assert_not_called()

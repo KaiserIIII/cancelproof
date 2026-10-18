@@ -2,9 +2,11 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import time
 
 from .runner import aggregate, campaign, run_scenario
 from .reports import write_reports
+from .config import validate
 
 
 def load(path):
@@ -46,13 +48,30 @@ def main(argv=None):
             runs=replay.get('runs')
             if type(runs) is not list or not 1<=len(runs)<=64:
                 raise ValueError('replay requires 1..64 runs')
-            if any(type(r) is not dict or not r.get('source_sha256') for r in runs):
-                raise ValueError('replay requires source digests')
-            if sum(r.get('limits',{}).get('wall_timeout',5) for r in runs)>120:
+            prepared=[]
+            for r in runs:
+                if type(r) is not dict or set(r)-{'plan','limits','source_sha256'}:
+                    raise ValueError('invalid replay run fields')
+                digest=r.get('source_sha256')
+                if not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):
+                    raise ValueError('replay requires lowercase SHA256 digests')
+                if type(r.get('limits')) is not dict:
+                    raise ValueError('replay limits must be an object')
+                plan,limits=validate(replay['scenario'],r.get('plan'),r['limits'])
+                prepared.append((plan,limits,digest))
+            if sum(limits['wall_timeout'] for _,limits,_ in prepared)>120:
                 raise ValueError('replay wall-time budget exceeds 120 seconds')
-            result=aggregate(replay['scenario'],[
-                run_scenario(replay['scenario'],r.get('plan'),r.get('limits'),expected_source_sha256=r['source_sha256'])
-                for r in runs],{'mode':'replay','source_scope':'scenario module only'})
+            started=time.monotonic();executed=[]
+            for plan,limits,digest in prepared:
+                if time.monotonic()-started+limits['wall_timeout']+2.6>120:
+                    executed.append({'verdict':'NOT_RUN','outcome':'not_run','scenario':replay['scenario'],
+                                     'plan':plan,'limits':limits,'source_sha256':digest,
+                                     'diagnostics':[{'code':'REPLAY_TOTAL_BUDGET'}]})
+                    break
+                executed.append(run_scenario(replay['scenario'],plan,limits,expected_source_sha256=digest))
+            result=aggregate(replay['scenario'],executed,{'mode':'replay','source_scope':'scenario module only',
+                                                        'requested':len(prepared),'executed':len(executed),
+                                                        'total_seconds_limit':120})
         if getattr(args,'output',None):write_reports(result,args.output)
         # ASCII escaping works with legacy Windows redirected stdout without losing Unicode data.
         print(json.dumps(result,ensure_ascii=True,allow_nan=False))

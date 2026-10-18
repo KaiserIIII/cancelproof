@@ -30,7 +30,16 @@ def skeleton(scenario, plan, limits, digest=None):
 async def execute(target, scenario, plan, limits, digest=None, emit=None):
     loop = asyncio.get_running_loop()
     previous = loop.get_task_factory()
+    previous_handler = loop.get_exception_handler()
+    unhandled = []
     created = 0
+    created_tasks = set()
+
+    def handler(loop, context):
+        exc = context.get("exception")
+        if len(unhandled) < 32:
+            unhandled.append(dict(code="UNHANDLED_LOOP_EXCEPTION",
+                                  exception=exception_info(exc) if exc else {"type": "LoopCallbackError"}))
 
     def factory(loop, coro, **kwargs):
         nonlocal created
@@ -40,16 +49,25 @@ async def execute(target, scenario, plan, limits, digest=None, emit=None):
                     coro.close()
                 raise ValueError("max_tasks cumulative creation budget exceeded")
             created += 1
-        return previous(loop, coro, **kwargs) if previous else asyncio.Task(coro, loop=loop, **kwargs)
+        task = previous(loop, coro, **kwargs) if previous else asyncio.Task(coro, loop=loop, **kwargs)
+        if not INTERNAL_CREATION.get():
+            created_tasks.add(task)
+        return task
 
     loop.set_task_factory(factory)
+    loop.set_exception_handler(handler)
     try:
-        return await _execute(target, scenario, plan, limits, digest, emit)
+        result = await _execute(target, scenario, plan, limits, digest, emit, created_tasks)
+        if unhandled:
+            result["diagnostics"].extend(unhandled)
+            result["verdict"] = "FAIL"
+        return result
     finally:
         loop.set_task_factory(previous)
+        loop.set_exception_handler(previous_handler)
 
 
-async def _execute(target, scenario, plan, limits, digest=None, emit=None):
+async def _execute(target, scenario, plan, limits, digest=None, emit=None, created_tasks=None):
     report = skeleton(scenario, plan, limits, digest)
     probe = Probe(plan, limits, emit)
     engine_task = asyncio.current_task()
@@ -79,6 +97,7 @@ async def _execute(target, scenario, plan, limits, digest=None, emit=None):
                          else "completed" if root.done() and root.exception() is None else "exception")
     failures, unknown = [], []
     related = asyncio.all_tasks() - baseline - probe.controllers
+    related.update(created_tasks or ())
     related.update(task for task, _ in probe.tasks.values())
     registered = {t: (name, finish) for name, (t, finish) in probe.tasks.items()}
     for index, task in enumerate(sorted(related, key=lambda t: registered.get(t, ("~",))[0])):
@@ -96,7 +115,12 @@ async def _execute(target, scenario, plan, limits, digest=None, emit=None):
             exc = task.exception()
             if exc is not None:
                 row["state"] = "exception"
-                failures.append(dict(code="TASK_EXCEPTION", task=name, exception=exception_info(exc)))
+                if task is root:
+                    failures.append(dict(code="TASK_EXCEPTION", task=name, exception=exception_info(exc)))
+                elif task in probe.allowed_exceptions:
+                    row["exception_acknowledged"] = probe.allowed_exceptions[task]
+                elif plan["expected"].get(name) != "completed":
+                    unknown.append(dict(code="CHILD_EXCEPTION_UNCLASSIFIED", task=name, exception=exception_info(exc)))
         if not task.done() and not exempt:
             if task is root and timed_out:
                 unknown.append(dict(code="SOFT_TIMEOUT_PENDING", task=name))
