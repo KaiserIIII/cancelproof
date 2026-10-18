@@ -1,0 +1,125 @@
+{
+  "scope": "Raw local evidence is not included in public source. Paths are relative to the external evidence root.",
+  "files": [
+    {
+      "path": "history/NATIVE_RESULTS.json",
+      "sha256": "5a8f33e5964c5b398baff45d4bc0c865291ff98bc0feef095a2e9d7ceed73635",
+      "bytes": 5192
+    },
+    {
+      "path": "competitors/pytest-simloop.log",
+      "sha256": "b311319207d42a172eabedc42a448d85da62f4d7aabe63e7dfebf1320696507c",
+      "bytes": 2555
+    },
+    {
+      "path": "competitors/EXECUTED_BASELINES.json",
+      "sha256": "de4d72503618b5f794de956ca53b4cb1496653253a3d30ddabb77375133e3fd4",
+      "bytes": 1380
+    },
+    {
+      "path": "independent-review/REVIEW.md",
+      "sha256": "63d7344f615dce0edefe8ef9fee2e37ccf3274e873770d27be65837802f48ae7",
+      "bytes": 10875
+    },
+    {
+      "path": "independent-review/post-fix-execution.log",
+      "sha256": "bd29842654bc38312ca03aa88735e058fdaebe5b5167564e37118dab8bad94f7",
+      "bytes": 7688
+    },
+    {
+      "path": "independent-review/post-fix-inputs.log",
+      "sha256": "7db71e9c9abb1c8b5e93496ad1f142c9612dda430ce568cf493458e742becd9c",
+      "bytes": 324
+    },
+    {
+      "path": "independent-review/post-fix-pytest.log",
+      "sha256": "5588a8ee44379dfedf9fd0d04b1a42f4267201839768a3bb8e1b0e2fa23c3e59",
+      "bytes": 117
+    },
+    {
+      "path": "final-linux.log",
+      "sha256": "4e575930843738dc518713887aefd80f6e6948b44b4d0f93b28d09b371eb91f4",
+      "bytes": 4260
+    },
+    {
+      "path": "final-platforms/windows312-acceptance.json",
+      "sha256": "7c70045ee5130cb870fe42b61c29c89f20497d4b03f1c718d21194cbc65fe814",
+      "bytes": 531
+    },
+    {
+      "path": "final-platforms/windows312-dependencies.json",
+      "sha256": "1eeb358545ed82eb74c2102e98c1659bb0a876bbb31a31e72c84145db487b384",
+      "bytes": 3274
+    },
+    {
+      "path": "final-platforms/windows312-freeze.json",
+      "sha256": "7797428469d72771967a254721b23072505bd0b3006af6ca63b0d50f6ce71a09",
+      "bytes": 688
+    },
+    {
+      "path": "final-platforms/windows312-install.json",
+      "sha256": "2363676ed60b06fa2365e35d2519bcc822e170276087a6158a85cd2a70c336ac",
+      "bytes": 1452
+    },
+    {
+      "path": "final-platforms/windows312-pipcheck.json",
+      "sha256": "7f6362f3f32894525d41cdf6e7bfa0bffa79261c5f2d3ef1c5ea972e5c98e3e6",
+      "bytes": 377
+    },
+    {
+      "path": "final-platforms/windows312-tests.json",
+      "sha256": "abcc5d768eed4d6c87a99778d28aa4779ee8f2433995c6ae61e26cefe6f5c4b7",
+      "bytes": 463
+    },
+    {
+      "path": "final-platforms/windows312-venv.json",
+      "sha256": "4f61939c9c0702e5e48e9232e86caf52181d87c5c4765a6a900f3ebff39dad2a",
+      "bytes": 394
+    },
+    {
+      "path": "final-platforms/windows312-version.json",
+      "sha256": "177dc72f30b38e1d599ec8230c165b8af0054b54ebd6235d7786c32bf0d4c6fe",
+      "bytes": 343
+    },
+    {
+      "path": "final-platforms/windows313-acceptance.json",
+      "sha256": "50f5720930539fb398fb34b59f2932e311662ff3f66d498561a0e6f517cabc3f",
+      "bytes": 530
+    },
+    {
+      "path": "final-platforms/windows313-dependencies.json",
+      "sha256": "8786803a8d4cdad83562b6b242e515f8b8721e5285484b00852986c9a4ebfe79",
+      "bytes": 3274
+    },
+    {
+      "path": "final-platforms/windows313-freeze.json",
+      "sha256": "072ae16cf1e3061b6c58e97de48e24b0d30569a4ae92dd2341a177636c052519",
+      "bytes": 688
+    },
+    {
+      "path": "final-platforms/windows313-install.json",
+      "sha256": "b503b4490b4634914ec1296cfc80dcea92cee54c926b54cc4d19df4ec9d8eacf",
+      "bytes": 1450
+    },
+    {
+      "path": "final-platforms/windows313-pipcheck.json",
+      "sha256": "5dcfcf913414ed4e4905ec6af0ad89d7c0f402b2705250626ccf5d8222aca568",
+      "bytes": 377
+    },
+    {
+      "path": "final-platforms/windows313-tests.json",
+      "sha256": "1cdc1abae60663759e371436d78a7dd7903322b12283d2ac7b42a4b680d09c1f",
+      "bytes": 463
+    },
+    {
+      "path": "final-platforms/windows313-venv.json",
+      "sha256": "09933de9c9b5b33818df262282021dd74f7cefdda5f99fc05bbb9a03835d5fb7",
+      "bytes": 394
+    },
+    {
+      "path": "final-platforms/windows313-version.json",
+      "sha256": "fdba4ed184050af91688c1cf42966bb854363b4ab22fc61ee4b4dc09c301f657",
+      "bytes": 342
+    }
+  ]
+}

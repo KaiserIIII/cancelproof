@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "scenario": "cancelproof.examples:asgi_fixed",
+  "runs": [
+    {
+      "plan": {
+        "actions": [
+          {
+            "checkpoint": "request_received",
+            "task": "request",
+            "occurrence": 1,
+            "repeat": 1,
+            "delay_turns": 0
+          }
+        ],
+        "expected": {}
+      },
+      "limits": {
+        "timeout": 1.0,
+        "grace": 0.15,
+        "wall_timeout": 5.0,
+        "max_tasks": 32,
+        "max_events": 2000
+      },
+      "source_sha256": "a265554ed939fde4a259203d359e885ff994d2ef3599a00b5d753f4993b5114e"
+    }
+  ]
+}

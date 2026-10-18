@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "scenario": "cancelproof.examples:asgi_fixed",
+  "verdict": "PASS",
+  "outcome": "completed",
+  "plan": {
+    "actions": [
+      {
+        "checkpoint": "request_received",
+        "task": "request",
+        "occurrence": 1,
+        "repeat": 1,
+        "delay_turns": 0
+      }
+    ],
+    "expected": {}
+  },
+  "limits": {
+    "timeout": 1.0,
+    "grace": 0.15,
+    "wall_timeout": 5.0,
+    "max_tasks": 32,
+    "max_events": 2000
+  },
+  "source_sha256": "a265554ed939fde4a259203d359e885ff994d2ef3599a00b5d753f4993b5114e",
+  "environment": {
+    "python": "3.13.0",
+    "implementation": "CPython",
+    "system": "Windows",
+    "release": "11"
+  },
+  "actions": [
+    {
+      "checkpoint": "request_received",
+      "task": "request",
+      "occurrence": 1,
+      "repeat": 1,
+      "delay_turns": 0,
+      "status": "HIT",
+      "deliveries": [
+        {
+          "task": "request",
+          "accepted": true,
+          "cancelling": 1
+        }
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "task": "request",
+      "checkpoint": "request_received",
+      "occurrence": 1,
+      "event_seq": 2
+    }
+  ],
+  "events": [
+    {
+      "seq": 1,
+      "name": "request_opened",
+      "details": {}
+    },
+    {
+      "seq": 2,
+      "name": "checkpoint",
+      "details": {
+        "task": "request",
+        "checkpoint": "request_received",
+        "occurrence": 1
+      }
+    },
+    {
+      "seq": 3,
+      "name": "cancel_requested",
+      "details": {
+        "task": "request",
+        "accepted": true,
+        "cancelling": 1
+      }
+    },
+    {
+      "seq": 4,
+      "name": "request_closed",
+      "details": {}
+    }
+  ],
+  "tasks": [
+    {
+      "name": "request",
+      "state": "cancelled",
+      "must_finish": true,
+      "excluded": false,
+      "coroutine": "AsyncClient.post",
+      "frames": []
+    },
+    {
+      "name": "request-background",
+      "state": "cancelled",
+      "must_finish": true,
+      "excluded": false,
+      "coroutine": "sleep",
+      "frames": []
+    },
+    {
+      "name": "scenario",
+      "state": "completed",
+      "must_finish": true,
+      "excluded": false,
+      "coroutine": "_execute.<locals>.invoke",
+      "frames": []
+    },
+    {
+      "name": "unregistered-3",
+      "state": "completed",
+      "must_finish": false,
+      "excluded": false,
+      "coroutine": "async_generator_athrow",
+      "frames": []
+    }
+  ],
+  "invariants": [
+    {
+      "name": "request_resources_closed",
+      "category": "resource",
+      "expected": true,
+      "verdict": "PASS",
+      "actual": {
+        "active": 0,
+        "closed": 1
+      }
+    },
+    {
+      "name": "no_cancelled_commit",
+      "category": "business",
+      "expected": true,
+      "verdict": "PASS",
+      "actual": 0
+    }
+  ],
+  "diagnostics": [],
+  "cleanup": {
+    "requested": 0,
+    "pending": 0,
+    "observed_before_cleanup": true
+  },
+  "limitations": [
+    "Trusted local Python targets only; subprocess containment is not a security sandbox.",
+    "Only named checkpoints are controlled. Ordinary asyncio scheduling remains uncontrolled.",
+    "A bounded passing run does not prove race freedom or real-world false-positive rates.",
+    "Source digest covers the scenario module only, not transitive dependencies or environment.",
+    "No hard memory quota or descendant-process isolation; user-shared events may contain sensitive data.",
+    "Task creation bounds/retention cover probe and event-loop task-factory paths; direct asyncio.Task constructors bypass them and are unsupported."
+  ],
+  "process": {
+    "returncode": 0,
+    "reaped": true,
+    "elapsed_seconds": 0.3162,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "workspace_removed": true
+  }
+}

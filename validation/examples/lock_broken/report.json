@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "scenario": "cancelproof.examples:lock_broken",
+  "verdict": "FAIL",
+  "outcome": "cancelled",
+  "plan": {
+    "actions": [
+      {
+        "checkpoint": "after_lock",
+        "task": null,
+        "occurrence": 1,
+        "repeat": 1,
+        "delay_turns": 0
+      }
+    ],
+    "expected": {}
+  },
+  "limits": {
+    "timeout": 1.0,
+    "grace": 0.15,
+    "wall_timeout": 5.0,
+    "max_tasks": 32,
+    "max_events": 2000
+  },
+  "source_sha256": "a265554ed939fde4a259203d359e885ff994d2ef3599a00b5d753f4993b5114e",
+  "environment": {
+    "python": "3.13.0",
+    "implementation": "CPython",
+    "system": "Windows",
+    "release": "11"
+  },
+  "actions": [
+    {
+      "checkpoint": "after_lock",
+      "task": null,
+      "occurrence": 1,
+      "repeat": 1,
+      "delay_turns": 0,
+      "status": "HIT",
+      "deliveries": [
+        {
+          "task": "scenario",
+          "accepted": true,
+          "cancelling": 1
+        }
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "task": "scenario",
+      "checkpoint": "after_lock",
+      "occurrence": 1,
+      "event_seq": 1
+    }
+  ],
+  "events": [
+    {
+      "seq": 1,
+      "name": "checkpoint",
+      "details": {
+        "task": "scenario",
+        "checkpoint": "after_lock",
+        "occurrence": 1
+      }
+    },
+    {
+      "seq": 2,
+      "name": "cancel_requested",
+      "details": {
+        "task": "scenario",
+        "accepted": true,
+        "cancelling": 1
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "name": "scenario",
+      "state": "cancelled",
+      "must_finish": true,
+      "excluded": false,
+      "coroutine": "_execute.<locals>.invoke",
+      "frames": []
+    }
+  ],
+  "invariants": [
+    {
+      "name": "lock_released",
+      "category": "resource",
+      "expected": false,
+      "verdict": "FAIL",
+      "actual": true
+    }
+  ],
+  "diagnostics": [
+    {
+      "code": "INVARIANT_FALSE",
+      "invariant": "lock_released"
+    }
+  ],
+  "cleanup": {
+    "requested": 0,
+    "pending": 0,
+    "observed_before_cleanup": true
+  },
+  "limitations": [
+    "Trusted local Python targets only; subprocess containment is not a security sandbox.",
+    "Only named checkpoints are controlled. Ordinary asyncio scheduling remains uncontrolled.",
+    "A bounded passing run does not prove race freedom or real-world false-positive rates.",
+    "Source digest covers the scenario module only, not transitive dependencies or environment.",
+    "No hard memory quota or descendant-process isolation; user-shared events may contain sensitive data.",
+    "Task creation bounds/retention cover probe and event-loop task-factory paths; direct asyncio.Task constructors bypass them and are unsupported."
+  ],
+  "process": {
+    "returncode": 0,
+    "reaped": true,
+    "elapsed_seconds": 0.2712,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "workspace_removed": true
+  }
+}

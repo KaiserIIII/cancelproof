@@ -1,0 +1,72 @@
+[
+  {
+    "name": "anyio",
+    "version": "3.3.4",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "2fcfe886735f790f07e72673e74e24b3a4673a7d",
+    "wheel_url": "https://files.pythonhosted.org/packages/e6/bc/832d33ddcf7bcfdfa73cd1780847726dee4581adac9d4ca975feb8e7662c/anyio-3.3.4-py3-none-any.whl",
+    "wheel_sha256": "4fd09a25ab7fa01d34512b7249e366cd10358cdafc95022c7ff8c8f8a5026d66",
+    "license": "MIT",
+    "retrieved_at_utc": "2026-10-18T02:42:24.630537+00:00"
+  },
+  {
+    "name": "anyio",
+    "version": "3.4.0",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "5376d62a423aedab5ede02086b33805588f0e94a",
+    "wheel_url": "https://files.pythonhosted.org/packages/ad/0a/919c040f061bc31f604ee8275ada8fa9f6f237425010afa523e429a04a45/anyio-3.4.0-py3-none-any.whl",
+    "wheel_sha256": "2855a9423524abcdd652d942f8932fda1735210f77a6b392eafd9ff34d3fe020",
+    "license": "MIT",
+    "retrieved_at_utc": "2026-10-18T02:42:24.613192+00:00"
+  },
+  {
+    "name": "anyio",
+    "version": "4.9.0",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "a6e9ebb75f0e1492ab5d0740b2ca76d0137f95e3",
+    "wheel_url": "https://files.pythonhosted.org/packages/a1/ee/48ca1a7c89ffec8b6a0c5d02b89c305671d5ffd8d3c94acf8b8c408575bb/anyio-4.9.0-py3-none-any.whl",
+    "wheel_sha256": "9f76d541cad6e36af7beb62e978876f3b41e3e04f2c1fbf0884604c0a9c4d93c",
+    "license": "MIT",
+    "retrieved_at_utc": "2026-10-18T02:42:25.245689+00:00"
+  },
+  {
+    "name": "anyio",
+    "version": "4.10.0",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "27abc2c47526feca2c1ba29a2f48d65f4281c6c2",
+    "wheel_url": "https://files.pythonhosted.org/packages/6f/12/e5e0282d673bb9746bacfb6e2dba8719989d3660cdb2ea79aee9a9651afb/anyio-4.10.0-py3-none-any.whl",
+    "wheel_sha256": "60e474ac86736bbfd6f210f7a61218939c318f43f9972497381f1c5e930ed3d1",
+    "license": null,
+    "retrieved_at_utc": "2026-10-18T02:42:24.662471+00:00"
+  },
+  {
+    "name": "anyio",
+    "version": "4.14.1",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "149b9e907618fadf6840a4d3cebad533b0c7d033",
+    "wheel_url": "https://files.pythonhosted.org/packages/b0/7b/90df4a0a816d98d6ea26f559d87836d494a2cf1fcf063be67df50a7bcc30/anyio-4.14.1-py3-none-any.whl",
+    "wheel_sha256": "4e5533c5b8ff0a24f5d7a176cbe6877129cd183893f66b537f8f227d10527d72",
+    "license": null,
+    "retrieved_at_utc": "2026-10-18T02:42:24.658702+00:00"
+  },
+  {
+    "name": "anyio",
+    "version": "4.15.0",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "928366259543412a2deb1e2ba09ea45ffa92ef4f",
+    "wheel_url": "https://files.pythonhosted.org/packages/21/a6/2b21ce5ebe4d8938a247c9b0dbb7271566ae559b01795c83ea4bb2660ed7/anyio-4.15.0-py3-none-any.whl",
+    "wheel_sha256": "7ecd9937369ffce8bba0b5ccb9b3a9507b101b0ed50256aecfbab27e6c2acb99",
+    "license": null,
+    "retrieved_at_utc": "2026-10-18T02:42:26.517386+00:00"
+  },
+  {
+    "name": "anyio",
+    "version": "4.15.1",
+    "source_repository": "https://github.com/agronholm/anyio",
+    "reviewed_commit": "ffcd1542cd6d127980205f90a0100078849dd703",
+    "wheel_url": "https://files.pythonhosted.org/packages/12/b8/4bd346e22b28902df4d651910f5242c28d84e4a5c2435ca5c3f797ed7e2e/anyio-4.15.1-py3-none-any.whl",
+    "wheel_sha256": "6152fdbbf9a77fdec97731721bebf7c4c44f7c29b424b0065826173efc7ed101",
+    "license": null,
+    "retrieved_at_utc": "2026-10-18T02:42:26.365795+00:00"
+  }
+]

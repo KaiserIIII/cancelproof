@@ -1,0 +1,101 @@
+[
+  {
+    "name": "pytest-asyncio",
+    "repository": "https://github.com/pytest-dev/pytest-asyncio",
+    "tag": "v1.4.0",
+    "commit": "6e14cd2af9292dca1fa2b027a06bbc40b0e0e425",
+    "commit_date": "2026-05-26T09:44:26Z",
+    "archive_url": "https://codeload.github.com/pytest-dev/pytest-asyncio/zip/6e14cd2af9292dca1fa2b027a06bbc40b0e0e425",
+    "sha256": "4c80b81399f8df73ff283f2840be79d55c503c074ee61690ff9931a1ae208207",
+    "downloaded_at_utc": "2026-10-18T02:41:30.261756+00:00",
+    "executed": true
+  },
+  {
+    "name": "anyio",
+    "repository": "https://github.com/agronholm/anyio",
+    "tag": "4.15.1",
+    "commit": "ffcd1542cd6d127980205f90a0100078849dd703",
+    "commit_date": "2026-09-05T10:40:16Z",
+    "archive_url": "https://codeload.github.com/agronholm/anyio/zip/ffcd1542cd6d127980205f90a0100078849dd703",
+    "sha256": "6e93436f0aa6ee13220c71aa2df8394c9a34918044e99af5a398e38eeeb81458",
+    "downloaded_at_utc": "2026-10-18T02:41:29.617632+00:00",
+    "executed": true
+  },
+  {
+    "name": "pytest-anyio",
+    "repository": "https://github.com/graingert/pytest-anyio",
+    "tag": null,
+    "commit": "07b610e9c31c566387cfbcbc1ba556a4cea7ca83",
+    "commit_date": "2021-06-29T22:57:05Z",
+    "archive_url": "https://codeload.github.com/graingert/pytest-anyio/zip/07b610e9c31c566387cfbcbc1ba556a4cea7ca83",
+    "sha256": "00167e90684ab6c91f312ce2ab71bfbecb8f062a50b4bfddfb4ccc9e2727f9be",
+    "downloaded_at_utc": "2026-10-18T02:41:30.045579+00:00",
+    "executed": false
+  },
+  {
+    "name": "trio",
+    "repository": "https://github.com/python-trio/trio",
+    "tag": "v0.34.0",
+    "commit": "b3fd421ab1ac7830ed7440b85331e4ae2ccaaba9",
+    "commit_date": "2026-08-11T00:21:59Z",
+    "archive_url": "https://codeload.github.com/python-trio/trio/zip/b3fd421ab1ac7830ed7440b85331e4ae2ccaaba9",
+    "sha256": "22e32a3314683d6bd2b0c2de1a7d38217751569a96a2b380ce910d3b0ecea1a9",
+    "downloaded_at_utc": "2026-10-18T02:41:31.008066+00:00",
+    "executed": false
+  },
+  {
+    "name": "pytest-trio",
+    "repository": "https://github.com/python-trio/pytest-trio",
+    "tag": "v0.8.0",
+    "commit": "250ec45f5d72eca78ab0ea2d1571667d2c51f8b5",
+    "commit_date": "2022-11-01T17:13:47Z",
+    "archive_url": "https://codeload.github.com/python-trio/pytest-trio/zip/250ec45f5d72eca78ab0ea2d1571667d2c51f8b5",
+    "sha256": "19401b200fd1c4c8df45f0fa513deed5c566fb23e529ef2a372ee40bba682d41",
+    "downloaded_at_utc": "2026-10-18T02:41:32.747856+00:00",
+    "executed": false
+  },
+  {
+    "name": "loomcheck",
+    "repository": "https://github.com/Alqudimi/LoomCheck",
+    "tag": null,
+    "commit": "e4ad6c84a29c1495d151b68a1565dc5fda0dd30a",
+    "commit_date": "2026-08-27T21:04:06Z",
+    "archive_url": "https://codeload.github.com/Alqudimi/LoomCheck/zip/e4ad6c84a29c1495d151b68a1565dc5fda0dd30a",
+    "sha256": "b0e203b756ad1e633bdc1923faac68dd0a65973414f74afa96c13f642eef693a",
+    "downloaded_at_utc": "2026-10-18T02:41:32.735850+00:00",
+    "executed": true
+  },
+  {
+    "name": "simloop",
+    "repository": "https://github.com/dhruvl/simloop",
+    "tag": "v0.2.2",
+    "commit": "5175176b6905c7d83b0fe32a69d4095c1c8d33fa",
+    "commit_date": "2026-09-29T19:19:48Z",
+    "archive_url": "https://codeload.github.com/dhruvl/simloop/zip/5175176b6905c7d83b0fe32a69d4095c1c8d33fa",
+    "sha256": "a69cf339a9625b81252dbc0315a7aab837de905e4374260045b1c06e25fdc555",
+    "downloaded_at_utc": "2026-10-18T02:41:33.657358+00:00",
+    "executed": true
+  },
+  {
+    "name": "pyleak",
+    "repository": "https://github.com/deepankarm/pyleak",
+    "tag": "v0.2.0",
+    "commit": "0d0ec2f8745f133e1101f8c17da092884631a324",
+    "commit_date": "2026-01-29T09:26:33Z",
+    "archive_url": "https://codeload.github.com/deepankarm/pyleak/zip/0d0ec2f8745f133e1101f8c17da092884631a324",
+    "sha256": "a0e1ef89ccfa2153c4a2e580432fe803412f073368a48f6534c0c26497f1c50b",
+    "downloaded_at_utc": "2026-10-18T02:41:33.369290+00:00",
+    "executed": true
+  },
+  {
+    "name": "hypothesis",
+    "repository": "https://github.com/HypothesisWorks/hypothesis",
+    "tag": "v6.170.1",
+    "commit": "718686d1e392968eb0953c043ef249c5d9d11a59",
+    "commit_date": "2026-10-16T16:44:54Z",
+    "archive_url": "https://codeload.github.com/HypothesisWorks/hypothesis/zip/718686d1e392968eb0953c043ef249c5d9d11a59",
+    "sha256": "6af8fdbfa59e20389eb70c59850a863aef9b064558a1fbed15fe37e151ce1c6d",
+    "downloaded_at_utc": "2026-10-18T02:42:47.375115+00:00",
+    "executed": false
+  }
+]

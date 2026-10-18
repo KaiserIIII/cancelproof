@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "tested_core_commit": "f8fd438ed0c6b1aaf68b2c5d6ca450be7578c725",
+  "platforms": [
+    {
+      "environment": {
+        "python": "3.12.10",
+        "system": "Windows"
+      },
+      "status": "PASS",
+      "pytest_passed": 39,
+      "pytest_subtests_passed": 4,
+      "constructed_acceptance_cases": 13,
+      "case_names": [
+        "lock_broken",
+        "lock_fixed",
+        "token_broken",
+        "token_fixed",
+        "swallow_broken",
+        "swallow_fixed",
+        "background_broken",
+        "background_fixed",
+        "cleanup_broken",
+        "cleanup_fixed",
+        "taskgroup_ok",
+        "asgi_broken",
+        "asgi_fixed"
+      ],
+      "cli_input_error_exit": 1,
+      "cli_inconclusive_unicode_exit": 3,
+      "pip_check": "PASS"
+    },
+    {
+      "environment": {
+        "python": "3.13.0",
+        "system": "Windows"
+      },
+      "status": "PASS",
+      "pytest_passed": 39,
+      "pytest_subtests_passed": 4,
+      "constructed_acceptance_cases": 13,
+      "case_names": [
+        "lock_broken",
+        "lock_fixed",
+        "token_broken",
+        "token_fixed",
+        "swallow_broken",
+        "swallow_fixed",
+        "background_broken",
+        "background_fixed",
+        "cleanup_broken",
+        "cleanup_fixed",
+        "taskgroup_ok",
+        "asgi_broken",
+        "asgi_fixed"
+      ],
+      "cli_input_error_exit": 1,
+      "cli_inconclusive_unicode_exit": 3,
+      "pip_check": "PASS"
+    },
+    {
+      "environment": {
+        "python": "3.13.16",
+        "system": "Linux"
+      },
+      "status": "PASS",
+      "pytest_passed": 39,
+      "pytest_subtests_passed": 4,
+      "constructed_acceptance_cases": 13,
+      "case_names": [
+        "lock_broken",
+        "lock_fixed",
+        "token_broken",
+        "token_fixed",
+        "swallow_broken",
+        "swallow_fixed",
+        "background_broken",
+        "background_fixed",
+        "cleanup_broken",
+        "cleanup_fixed",
+        "taskgroup_ok",
+        "asgi_broken",
+        "asgi_fixed"
+      ],
+      "cli_input_error_exit": 1,
+      "cli_inconclusive_unicode_exit": 3,
+      "pip_check": "PASS"
+    }
+  ],
+  "cross_platform_case_comparison": {
+    "fields": "verdict,outcome,diagnostics,invariants,tasks,actions",
+    "differences": [],
+    "case_count": 13
+  },
+  "not_run": [
+    "Linux Python3.12",
+    "GitHub Actions hosted execution",
+    "Trio/Hypothesis runtime baselines"
+  ],
+  "baseline_pytest_asyncio_simloop": {
+    "passed_correct_controls": 2,
+    "failed_broken_invariants_as_expected": 2,
+    "simloop_seeds": 11
+  },
+  "baseline_loomcheck_pyleak": {
+    "loom_fixed": {
+      "success": true,
+      "steps": 1
+    },
+    "loom_broken": {
+      "success": false,
+      "steps": 1
+    },
+    "pyleak_fixed": {
+      "detected": false
+    },
+    "pyleak_broken": {
+      "detected": true,
+      "exception_type": "TaskLeakError"
+    }
+  },
+  "deadline_baseline": {
+    "status": "external_parent_timeout",
+    "child_killed_and_waited_by_subprocess_run": true,
+    "seconds": 1.521,
+    "interpretation": "LoomCheck internal timeout did not finish cancellation-resistant cleanup in this constructed case; adding an external watchdog also solves this for the baseline."
+  },
+  "limitations": [
+    "Constructed developer cases, not external generalization or accuracy samples.",
+    "No runtime/memory/performance superiority claimed."
+  ]
+}

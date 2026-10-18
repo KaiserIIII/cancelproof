@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'"><title>CancelProof report</title><style>body{font:16px system-ui;max-width:1000px;margin:3em auto;padding:1em}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f4f8;padding:1em}</style><h1>CancelProof: PASS</h1><p>Bounded named-checkpoint test. Not a race-freedom proof.</p><pre>{
+  &quot;schema_version&quot;: 1,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;scenario&quot;: &quot;cancelproof.examples:lock_fixed&quot;,
+  &quot;verdict&quot;: &quot;PASS&quot;,
+  &quot;outcome&quot;: &quot;cancelled&quot;,
+  &quot;plan&quot;: {
+    &quot;actions&quot;: [
+      {
+        &quot;checkpoint&quot;: &quot;after_lock&quot;,
+        &quot;task&quot;: null,
+        &quot;occurrence&quot;: 1,
+        &quot;repeat&quot;: 1,
+        &quot;delay_turns&quot;: 0
+      }
+    ],
+    &quot;expected&quot;: {}
+  },
+  &quot;limits&quot;: {
+    &quot;timeout&quot;: 1.0,
+    &quot;grace&quot;: 0.15,
+    &quot;wall_timeout&quot;: 5.0,
+    &quot;max_tasks&quot;: 32,
+    &quot;max_events&quot;: 2000
+  },
+  &quot;source_sha256&quot;: &quot;a265554ed939fde4a259203d359e885ff994d2ef3599a00b5d753f4993b5114e&quot;,
+  &quot;environment&quot;: {
+    &quot;python&quot;: &quot;3.13.0&quot;,
+    &quot;implementation&quot;: &quot;CPython&quot;,
+    &quot;system&quot;: &quot;Windows&quot;,
+    &quot;release&quot;: &quot;11&quot;
+  },
+  &quot;actions&quot;: [
+    {
+      &quot;checkpoint&quot;: &quot;after_lock&quot;,
+      &quot;task&quot;: null,
+      &quot;occurrence&quot;: 1,
+      &quot;repeat&quot;: 1,
+      &quot;delay_turns&quot;: 0,
+      &quot;status&quot;: &quot;HIT&quot;,
+      &quot;deliveries&quot;: [
+        {
+          &quot;task&quot;: &quot;scenario&quot;,
+          &quot;accepted&quot;: true,
+          &quot;cancelling&quot;: 1
+        }
+      ]
+    }
+  ],
+  &quot;checkpoints&quot;: [
+    {
+      &quot;task&quot;: &quot;scenario&quot;,
+      &quot;checkpoint&quot;: &quot;after_lock&quot;,
+      &quot;occurrence&quot;: 1,
+      &quot;event_seq&quot;: 1
+    }
+  ],
+  &quot;events&quot;: [
+    {
+      &quot;seq&quot;: 1,
+      &quot;name&quot;: &quot;checkpoint&quot;,
+      &quot;details&quot;: {
+        &quot;task&quot;: &quot;scenario&quot;,
+        &quot;checkpoint&quot;: &quot;after_lock&quot;,
+        &quot;occurrence&quot;: 1
+      }
+    },
+    {
+      &quot;seq&quot;: 2,
+      &quot;name&quot;: &quot;cancel_requested&quot;,
+      &quot;details&quot;: {
+        &quot;task&quot;: &quot;scenario&quot;,
+        &quot;accepted&quot;: true,
+        &quot;cancelling&quot;: 1
+      }
+    }
+  ],
+  &quot;tasks&quot;: [
+    {
+      &quot;name&quot;: &quot;scenario&quot;,
+      &quot;state&quot;: &quot;cancelled&quot;,
+      &quot;must_finish&quot;: true,
+      &quot;excluded&quot;: false,
+      &quot;coroutine&quot;: &quot;_execute.&lt;locals&gt;.invoke&quot;,
+      &quot;frames&quot;: []
+    }
+  ],
+  &quot;invariants&quot;: [
+    {
+      &quot;name&quot;: &quot;lock_released&quot;,
+      &quot;category&quot;: &quot;resource&quot;,
+      &quot;expected&quot;: false,
+      &quot;verdict&quot;: &quot;PASS&quot;,
+      &quot;actual&quot;: false
+    }
+  ],
+  &quot;diagnostics&quot;: [],
+  &quot;cleanup&quot;: {
+    &quot;requested&quot;: 0,
+    &quot;pending&quot;: 0,
+    &quot;observed_before_cleanup&quot;: true
+  },
+  &quot;limitations&quot;: [
+    &quot;Trusted local Python targets only; subprocess containment is not a security sandbox.&quot;,
+    &quot;Only named checkpoints are controlled. Ordinary asyncio scheduling remains uncontrolled.&quot;,
+    &quot;A bounded passing run does not prove race freedom or real-world false-positive rates.&quot;,
+    &quot;Source digest covers the scenario module only, not transitive dependencies or environment.&quot;,
+    &quot;No hard memory quota or descendant-process isolation; user-shared events may contain sensitive data.&quot;,
+    &quot;Task creation bounds/retention cover probe and event-loop task-factory paths; direct asyncio.Task constructors bypass them and are unsupported.&quot;
+  ],
+  &quot;process&quot;: {
+    &quot;returncode&quot;: 0,
+    &quot;reaped&quot;: true,
+    &quot;elapsed_seconds&quot;: 0.255,
+    &quot;stdout_bytes&quot;: 0,
+    &quot;stderr_bytes&quot;: 0,
+    &quot;workspace_removed&quot;: true
+  }
+}</pre></html>
